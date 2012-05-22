@@ -10,8 +10,7 @@ Ext.define('Ext.ux.InfiniteCarousel', {
 
     me.delay = me.config.delay || 4000;
   
-    delete me.config.items;
-    delete me.config.delay;
+    delete me.config;
   },
   initialize: function(){
     var me = this;
