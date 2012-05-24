@@ -74,14 +74,10 @@ Ext.define('Ext.ux.ThreeSixtyView', {
           me.index--;
         break;
     }    
-    me.removeAll();
-    var image = Ext.create('Ext.Img',{
-      src: me.data[me.index].src,
-      width:640,
-      height:378
-    });
-    
-    me.add(image);
+
+    var img = me.getItems().getAt(0);
+    img.setSrc(me.data[me.index].src);
+
   },
   onDragEnd: function(draggable, e, offsetX, offsetY){
 

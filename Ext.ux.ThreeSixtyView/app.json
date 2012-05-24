@@ -24,10 +24,6 @@
         ],
         "fallback": []
     },
-    "extras": [
-        "resources/icons",
-        "resources/loading"
-    ],
     "archivePath": "archive",
     "buildPaths": {
         "testing": "../deploy/testing/overlays",
