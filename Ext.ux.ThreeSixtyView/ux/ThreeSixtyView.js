@@ -2,7 +2,7 @@ Ext.define('Ext.ux.ThreeSixtyView', {
   extend: 'Ext.Container',
   xtype: 'threesixtyview',
   require:[
-	  
+	  'Ext.Img'
 	],
   config: {
   },
@@ -13,6 +13,8 @@ Ext.define('Ext.ux.ThreeSixtyView', {
     me.data = me.config.data;
     me.index = 0;
     me.deltaX = 4;
+    me.velocity = 1;
+    me.oldDeltaT = 0;
     
     delete me.config;
     
@@ -21,7 +23,6 @@ Ext.define('Ext.ux.ThreeSixtyView', {
     var me = this;
     me.callParent();
     
-    
     var initImg = Ext.create('Ext.Img',{
       src:me.data[me.index].src,
       width:640,
@@ -29,6 +30,10 @@ Ext.define('Ext.ux.ThreeSixtyView', {
     });
     
     me.add(initImg);
+    var i;
+    for(i=me.data.length-1;i>=0;i--){
+      initImg.setSrc(me.data[i].src);
+    }
 
     me.setDraggable({
       direction: 'horizontal',
@@ -41,33 +46,55 @@ Ext.define('Ext.ux.ThreeSixtyView', {
           fn: me.onDragStart,
           order: 'before'
         },
-        drag: me.onDrag,
+        drag: Ext.Function.createThrottled(me.onDrag, 1, me),
         dragend: me.onDragEnd,
         scope: me
       }
-    });
-  }  ,
+    });    
+  },
   onDragStart: function(draggable, e, offsetX, offsetY){
-    this.start = e.startX;
+    this.oldDeltaT = 0;
   }, 
   onDrag: function(draggable, e, offsetX, offsetY){
     var me = this;
-    var direction;
-    if(e.deltaX > 0)
-      direction = (e.deltaX > me.deltaX) ? "left" : "right";
-    else
-      direction = (e.deltaX < me.deltaX) ? "right" : "left";
-
-    me.deltaX = e.deltaX;
+    me.velocity = Math.abs(e.deltaX / e.deltaTime)
     
-    switch (direction) {
-      case "right":
+    if(e.deltaX < me.deltaX)
+      me.direction = "left";
+    if(e.deltaX > me.deltaX)
+      me.direction = "right";
+
+    if(e.deltaX != me.deltaX)
+      me.updatePicture();
+      
+    me.deltaX = e.deltaX;
+  },
+  onDragEnd: function(draggable, e, offsetX, offsetY){
+    var me = this;
+    
+    me.deltaX = 4;
+    me.decelerate();
+  },
+  decelerate: function(){
+    var me = this;
+    var decelerate = function(){
+      me.updatePicture();
+      me.velocity-=0.5;
+      if(me.velocity>0.5)
+        setTimeout(function(){decelerate()}, 100/me.velocity);
+    }
+    setTimeout(function(){decelerate()}, 100/me.velocity);
+  },
+  updatePicture: function(scope){
+    var me = (scope ? scope : this);
+    switch (me.direction) {
+      case "left":
         if(me.index == me.data.length-1)
           me.index = 0;
         else
           me.index++;
         break;
-      case "left":
+      case "right":
         if(me.index == 0)
           me.index = me.data.length-1;
         else
@@ -75,11 +102,6 @@ Ext.define('Ext.ux.ThreeSixtyView', {
         break;
     }    
 
-    var img = me.getItems().getAt(0);
-    img.setSrc(me.data[me.index].src);
-
-  },
-  onDragEnd: function(draggable, e, offsetX, offsetY){
-
+    me.getItems().getAt(0).setSrc(me.data[me.index].src);
   }
 });
