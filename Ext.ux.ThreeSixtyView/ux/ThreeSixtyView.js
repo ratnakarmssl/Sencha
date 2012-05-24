@@ -79,11 +79,11 @@ Ext.define('Ext.ux.ThreeSixtyView', {
     var me = this;
     var decelerate = function(){
       me.updatePicture();
-      me.velocity-=0.5;
-      if(me.velocity>0.5)
-        setTimeout(function(){decelerate()}, 100/me.velocity);
+      me.velocity = me.velocity/1.05;
+      if(me.velocity>1)
+        setTimeout(function(){decelerate()}, 50/me.velocity);
     }
-    setTimeout(function(){decelerate()}, 100/me.velocity);
+    setTimeout(function(){decelerate()}, 50/me.velocity);
   },
   updatePicture: function(scope){
     var me = (scope ? scope : this);
