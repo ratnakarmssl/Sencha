@@ -23,17 +23,17 @@ Ext.define('Ext.ux.ThreeSixtyView', {
     var me = this;
     me.callParent();
     
-    var initImg = Ext.create('Ext.Img',{
-      src:me.data[me.index].src,
+    var initImg = Ext.create('Ext.Panel',{
+      style:'background-image:url('+me.data[me.index].src+');background-size:640px 378px;background-repeat: no-repeat;',
       width:640,
       height:378
     });
     
     me.add(initImg);
-    var i;
-    for(i=me.data.length-1;i>=0;i--){
-      initImg.setSrc(me.data[i].src);
-    }
+    // var i;
+    //  for(i=me.data.length-1;i>=0;i--){
+    //    initImg.setSrc(me.data[i].src);
+    //  }
 
     me.setDraggable({
       direction: 'horizontal',
@@ -101,7 +101,8 @@ Ext.define('Ext.ux.ThreeSixtyView', {
           me.index--;
         break;
     }    
-
-    me.getItems().getAt(0).setSrc(me.data[me.index].src);
+    console.log(me.getItems().getAt(0));
+    me.getItems().getAt(0).setStyle('background-image:url('+me.data[me.index].src+');background-size:640px 378px;background-repeat: no-repeat;');
+    //me.getItems().getAt(0).setSrc(me.data[me.index].src);
   }
 });
