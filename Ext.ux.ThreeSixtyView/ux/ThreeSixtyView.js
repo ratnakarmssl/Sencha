@@ -57,8 +57,9 @@ Ext.define('Ext.ux.ThreeSixtyView', {
       direction = (e.deltaX > me.deltaX) ? "left" : "right";
     else
       direction = (e.deltaX < me.deltaX) ? "right" : "left";
-    console.log(e.deltaX, me.deltaX);  
+
     me.deltaX = e.deltaX;
+    
     switch (direction) {
       case "right":
         if(me.index == me.data.length-1)

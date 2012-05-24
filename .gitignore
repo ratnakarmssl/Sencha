@@ -29,7 +29,6 @@
 # OS generated files #
 ######################
 microloader/
-resources/
 sencha-touch-all-debug.js
 sencha-touch-all.js
 sencha-touch-debug.js
