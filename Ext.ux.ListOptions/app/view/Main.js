@@ -21,18 +21,18 @@ Ext.define("ListOptions.view.Main", {
       allowMultiple: false, // true or false
       options: [{
         cls: 'bookmark',
-        handler:function(){
-          alert('Bookmark');
+        handler:function(record){
+          alert('Bookmark : '+record.data.title);
         }
       },{
         cls: 'action',
-        handler:function(){
-          alert('Action');
+        handler:function(record){
+          alert('Action : '+record.data.title);
         }
       },{
         cls: 'delete',
-        handler:function(){
-          alert('Delete');
+        handler:function(record){
+          alert('Delete : '+record.data.title);
         }
       }]
     }]

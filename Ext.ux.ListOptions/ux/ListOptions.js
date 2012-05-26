@@ -84,12 +84,14 @@ Ext.define('Ext.ux.ListOptions', {
     var me = this;
     for(o in me.options){
       if(me.options[o].cls == node.className){
-        me.options[o].handler();
+        me.options[o].handler(me.currentRecord);
       }
     }
   },
-  onItemSwipe: function(list,target,index,e){
+  onItemSwipe: function(list,target,index,e,t){
     var me = this;
+    me.currentRecord = Ext.getStore(me.store).getAt(index);
+    
     var direction = (e.deltaX > 0) ? 'right' :'left';
     if(me.direction == 'both' || direction == me.direction){
       
