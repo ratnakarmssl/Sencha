@@ -6,7 +6,7 @@ Ext.define('Ext.ux.NotificationCenter', {
 	],
   config: {
     cls:'notification-center',
-    style: 'position: absolute; top: -'+parseInt(document.height)+'px; left: 0; height: '+parseInt(document.height+10)+'px;width: 320px !important; z-index: 2;'
+    style: 'position: absolute; top: 0; left: -'+parseInt(document.width)+'px; height: '+parseInt(document.height)+'px;width: '+parseInt(document.width+10)+'px !important; z-index: 2;'
   },
   initConfig: function(){
     
@@ -35,13 +35,13 @@ Ext.define('Ext.ux.NotificationCenter', {
       width: '100%',
       height: parseInt(document.height),
       docked:'top',
-      style:'max-width:640px;background-image: url(resources/images/bg.png);background-repeat: repeat;'
     });
-    
-    console.log(me.store);
-    
+        
     var list = Ext.create('Ext.List', {
-      height:parseInt(document.height-20),
+      height:parseInt(document.height),
+      width: parseInt(screen.width-40),
+      docked:'right',
+      style:'background-image: url(resources/images/bg.png);background-repeat: repeat;margin-right:50px',
       cls:'notification-list',
       itemCls:'notification-item',
       pressedCls:'notification-item-pressed',
@@ -60,10 +60,10 @@ Ext.define('Ext.ux.NotificationCenter', {
   initDragSystem: function(){
     var me = this;
     me.setDraggable({
-      direction: 'vertical',
+      direction: 'horizontal',
       constraint: {
           min: { x: 0, y: 0 },
-          max: { x: 0, y: parseInt(document.height) }
+          max: { x: parseInt(screen.width), y: 0 }
       },
       listeners: {
         dragstart: {
@@ -80,7 +80,6 @@ Ext.define('Ext.ux.NotificationCenter', {
     var node = e.target;
     while (node = node.parentNode) {
         if (node.className && node.className.indexOf('notification-list') > -1) {
-          console.log('found notification list');
           return false;
         }
     }
@@ -91,27 +90,27 @@ Ext.define('Ext.ux.NotificationCenter', {
   },
   onDragEnd: function(draggable, e, offsetX, offsetY){
     var me = this;
-    var velocity  = Math.abs(e.deltaY / e.deltaTime),
-        height     = parseInt(document.height),
-        direction = (e.deltaY > 0) ? "down" : "up",
+    var velocity  = Math.abs(e.deltaX / e.deltaTime),
+        width     = parseInt(screen.width),
+        direction = (e.deltaX > 0) ? "right" : "left",
         offset    = Ext.clone(draggable.offset),
-        threshold = parseInt(height * .5);
-
+        threshold = parseInt(width * .5);
+    
     switch (direction) {
-      case "down":
-        me.offsetY = (velocity > 0.75 || offsetY > threshold) ? height : 0;
+      case "right":
+        me.offsetX = (velocity > 0.75 || offsetX > threshold) ? width : 0;
         break;
-      case "up":
-        me.offsetY = (velocity > 0.75 || offsetY < threshold) ? 0 : height;
+      case "left":
+        me.offsetX = (velocity > 0.75 || offsetX < threshold) ? 0 : width;
         break;
     } 
     me.moveContainer();
   },
   moveContainer: function(){
     var me = this;
-    
-    me.getDraggable().setOffset(0, me.offsetY, {
+    me.getDraggable().setOffset(me.offsetX, 0, {
       duration: 100
     });
+
   }
 });
