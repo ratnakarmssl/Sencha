@@ -3,7 +3,7 @@ Ext.define('Reminder.model.Task', {
 
   config: {
     fields: [
-      'id',
+      'timestamp',
       'title'
     ]
   }
