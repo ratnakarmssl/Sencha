@@ -59,21 +59,13 @@ Ext.define('Ext.ux.Reminder', {
   },
   
   addTask: function(){
+    Ext.getStore(this.store).add({title:'',timestamp:new Date().getTime()+10000});
+    
     var me = this,
-        store = Ext.getStore(this.store);
-    store.add({title:'',timestamp:new Date().getTime()+10000});
-    me.token = 0;
-    var textfield = Ext.create('Ext.field.Text', {
+        textfield = Ext.create('Ext.field.Text', {
           listeners:{
             blur: function(){
               me.createTask();
-              if(me.token == 1)
-                store.sync();
-            },
-            keyup: function(event, target, options) {
-              if(target.event.keyIdentifier == 'Enter'){
-                me.addTask();
-              }
             }
           }
         }),
@@ -85,20 +77,14 @@ Ext.define('Ext.ux.Reminder', {
     query[query.length-1].innerHTML = '<div class="reminder-textfield" id="new-task">'+input+'</div>';
     selector += ' input';
     query = Ext.DomQuery.select(selector);
-    query[query.length-1].focus();  
-    me.token = 1; 
+    query[query.length-1].focus();   
   },
   
   createTask: function(){
-    var value = Ext.DomQuery.select('div[id=new-task] input')[0].value;
     var store = Ext.getStore(this.store);
-    if(value != ''){
-      store.add({title:value,timestamp:new Date().getTime()});
-      store.removeAt(store.getCount()-2);
-    }
-    else{
-      store.removeAt(store.getCount()-1);
-    }
+    store.add({title:Ext.DomQuery.select('div[id=new-task] input')[0].value,timestamp:new Date().getTime()});
+    store.removeAt(store.getCount()-1);
+    store.sync();
   }
   
 });
