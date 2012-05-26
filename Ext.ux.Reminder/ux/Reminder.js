@@ -42,6 +42,8 @@ Ext.define('Ext.ux.Reminder', {
       store: me.store,
       cls: 'reminder-list',
       itemCls: 'reminder-item',
+      pressedCls: 'reminder-item-pressed',
+      selectedCls: 'reminder-item-selected',
       itemTpl: [
         '<div>',
           '<div class="reminder-item-ticker"><input name="{id}" value="" type="checkbox"></div>',
@@ -49,12 +51,13 @@ Ext.define('Ext.ux.Reminder', {
         '</div>',
       ].join(""),
       listeners:{
-        itemtap: function(dataview, index, item, event) {
+        itemtap: function(dataview, index, target, record, event) {
 
         }
       }
     });
-    
+
+
     me.add([toolbar,list]);
   },
   

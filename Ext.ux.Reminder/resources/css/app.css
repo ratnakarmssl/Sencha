@@ -11,6 +11,14 @@
   background-color:transparent;
 }
 
+.reminder-item-pressed{
+  background-color:transparent;
+}
+
+.reminder-item-selected{
+  background-color:transparent;
+}
+
 .reminder-item .x-list-item-label {
   padding: 0 !important;
 }
