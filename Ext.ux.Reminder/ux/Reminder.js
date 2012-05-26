@@ -61,6 +61,7 @@ Ext.define('Ext.ux.Reminder', {
     var createTask = function(value){
       store.add({title:Ext.DomQuery.select('div[id=new-task] input')[0].value});
       store.removeAt(store.getCount()-2);
+      store.sync();
     };
     
     store.add({title:''});
