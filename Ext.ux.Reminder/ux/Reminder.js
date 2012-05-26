@@ -11,9 +11,7 @@ Ext.define('Ext.ux.Reminder', {
   initConfig: function(){
     var me = this;
     me.callParent(arguments);
-    
     me.store = me.config.store,
-    
     delete me.config;
   },
   initialize: function(){
@@ -21,24 +19,23 @@ Ext.define('Ext.ux.Reminder', {
     me.callParent();
     
     var toolbar = Ext.create('Ext.Toolbar',{
-      xtype: 'toolbar',
       docked:'top',
-      width:'100%',
+      height:43,
       title:'Reminder',
-      items: [{xtype:'spacer'},{
-        align:'right',
-        iconCls:'add',
-        iconMask:true,
+      items: [{
+        xtype:'spacer'
+      },{
+        text:'New',
         handler: me.addTask,
         scope: me
       }]
     });
     
     var list = Ext.create('Ext.List',{
-      xtype:'list',
-      store:me.store,
-      cls:'reminder-list',
-      itemCls:'reminder-item',
+      xtype: 'list',
+      store: me.store,
+      cls: 'reminder-list',
+      itemCls: 'reminder-item',
       itemTpl: [
         '<div>',
           '<div class="reminder-item-ticker"><input name="{id}" value="" type="checkbox"></div>',
@@ -54,34 +51,33 @@ Ext.define('Ext.ux.Reminder', {
     
     me.add([toolbar,list]);
   },
+  
   addTask: function(){
-    var me = this;
-    var store = Ext.getStore(this.store);
+    Ext.getStore(this.store).add({title:''});
     
-    var createTask = function(value){
-      store.add({title:Ext.DomQuery.select('div[id=new-task] input')[0].value});
-      store.removeAt(store.getCount()-2);
-      store.sync();
-    };
-    
-    store.add({title:''});
-
-    var textfield = Ext.create('Ext.field.Text', {
-        listeners:{
-          blur: function(){
-            createTask();
+    var me = this,
+        textfield = Ext.create('Ext.field.Text', {
+          listeners:{
+            blur: function(){
+              me.createTask();
+            }
           }
-        }
-    });    
-    
-    var inputHTML = textfield.element.dom.innerHTML;
-    var input = inputHTML.match(/<input.+?\/?>/g);
-    var selector = 'div[class="reminder-item-title"]';
-    var query = Ext.DomQuery.select(selector);
+        }),
+        inputHTML = textfield.element.dom.innerHTML,
+        input = inputHTML.match(/<input.+?\/?>/g),
+        selector = 'div[class="reminder-item-title"]',
+        query = Ext.DomQuery.select(selector);
+        
     query[query.length-1].innerHTML = '<div class="reminder-textfield" id="new-task">'+input+'</div>';
-
     selector += ' input';
-    query = Ext.DomQuery.select(selector);
-    query[0].focus();    
+    Ext.DomQuery.select(selector)[0].focus();   
+  },
+  
+  createTask: function(){
+    var store = Ext.getStore(this.store);
+    store.add({title:Ext.DomQuery.select('div[id=new-task] input')[0].value});
+    store.removeAt(store.getCount()-2);
+    store.sync();
   }
+  
 });
