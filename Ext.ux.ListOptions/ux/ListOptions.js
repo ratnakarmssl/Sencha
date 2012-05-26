@@ -5,6 +5,7 @@ Ext.define('Ext.ux.ListOptions', {
 	  'Ext.Img'
 	],
   config: {
+    cls:'list-options',
     scrollable:{
       direction:'vertical',
       directionLock: true
@@ -18,6 +19,7 @@ Ext.define('Ext.ux.ListOptions', {
     var me = this;
     me.callParent(arguments);
     me.store = me.config.store;
+    me.options = me.config.options;
     me.direction = me.config.direction;
     me.allowMultiple = me.config.allowMultiple;
     me.htmlArray = [];
@@ -43,18 +45,48 @@ Ext.define('Ext.ux.ListOptions', {
     var items = Ext.DomQuery.select('div.list-options-item');
     var height = list.items.items[0].element.dom.offsetHeight/items.length;
     var width = list.element.dom.offsetWidth;
-
+    var optionWidth = width/me.options.length;
+    var optionsHTML = '';
+    for(var i=0;i<me.options.length;i++){
+      var option ='<li class="'+me.options[i].cls+'" style="float:left;list-style-type: none;width:'+optionWidth.toString().split('.')[0]+'px;height:'+height+'px;">&nbsp;</li>';
+      optionsHTML+=option;
+    }
     var top = 0;
     for(var i=0;i<items.length;i++){
-      me.htmlArray.push('<div class="list-options-menu" style="position:absolute;top:'+top+'px;left:0;width:'+width+'px;height:'+height+'px;z-index:0;"></div>')
+      me.htmlArray.push(['<ul class="list-options-menu" style="position:absolute;top:'+top+'px;left:0;width:'+width+'px;height:'+height+'px;z-index:0;">',
+                           '<div class="top-shadow"><div class="bottom-shadow">',
+                           optionsHTML,
+                           '</div></div>',
+                         '</ul>'].join(""));
       top+=height;
     };
+
     me.setHtml(me.htmlArray.join("")); 
-    window.mee = me;
+
+    for(var i=0;i<me.options.length;i++){
+      var HTMLElements = Ext.DomQuery.select('li[class='+me.options[i].cls+']');
+      for(var j=0;j<HTMLElements.length;j++){
+        var DOMElement = Ext.get(HTMLElements[j]);
+        DOMElement.on({
+          touchstart: function(e, node, opts){
+            me.onOptionTap(e, node, opts);
+          },
+          scope:this
+        }); 
+      }
+    }
   },
   onScroll:function(scroller){
     var me = this;
     me.hideOptions();
+  },
+  onOptionTap: function(e, node, opts){
+    var me = this;
+    for(o in me.options){
+      if(me.options[o].cls == node.className){
+        me.options[o].handler();
+      }
+    }
   },
   onItemSwipe: function(list,target,index,e){
     var me = this;

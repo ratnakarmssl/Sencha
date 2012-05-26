@@ -21,12 +21,19 @@ Ext.define("ListOptions.view.Main", {
       allowMultiple: false, // true or false
       options: [{
         cls: 'bookmark',
-      }, {
-        cls: 'like'
+        handler:function(){
+          alert('Bookmark');
+        }
       },{
-        cls: 'edit',
-      }, {
-        cls: 'delete'
+        cls: 'action',
+        handler:function(){
+          alert('Action');
+        }
+      },{
+        cls: 'delete',
+        handler:function(){
+          alert('Delete');
+        }
       }]
     }]
   }
