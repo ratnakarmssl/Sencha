@@ -2,12 +2,10 @@ Ext.define('Reminder.store.Tasks', {
   extend: 'Ext.data.Store',
 
   config: {
-    model: 'Reminder.model.Task',
-    data: [
-      { title: 'Task 1'},
-      { title: 'Task 2'},
-      { title: 'Task 3'}
-    ]
-    
+    proxy: new Ext.data.LocalStorageProxy({
+        id: 'reminder-tasks'
+    }),
+    autoLoad: false,
+    model: 'Reminder.model.Task',    
   }
 });

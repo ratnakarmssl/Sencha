@@ -75,8 +75,8 @@ Ext.define('Ext.ux.Reminder', {
     
     var inputHTML = textfield.element.dom.innerHTML;
     var input = inputHTML.match(/<input.+?\/?>/g);
-
-    var query = Ext.DomQuery.select('div[class="reminder-item-title"]');
+    var selector = 'div[class="reminder-item-title"]';
+    var query = Ext.DomQuery.select(selector);
     query[query.length-1].innerHTML = '<div class="reminder-textfield" id="new-task">'+input+'</div>';
 
     selector += ' input';
