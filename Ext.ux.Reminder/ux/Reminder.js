@@ -11,7 +11,7 @@ Ext.define('Ext.ux.Reminder', {
   initConfig: function(){
     var me = this;
     me.callParent(arguments);
-    me.store = me.config.store,
+    me.store = me.config.store;
     delete me.config;
   },
   initialize: function(){
@@ -23,6 +23,12 @@ Ext.define('Ext.ux.Reminder', {
       height:43,
       title:'Reminder',
       items: [{
+        text:'Clear',
+        handler: function(){
+          Ext.getStore(me.store).removeAll();
+          Ext.getStore(me.store).sync();
+        }
+      },{
         xtype:'spacer'
       },{
         text:'New',
@@ -53,13 +59,21 @@ Ext.define('Ext.ux.Reminder', {
   },
   
   addTask: function(){
-    Ext.getStore(this.store).add({title:''});
-    
     var me = this,
-        textfield = Ext.create('Ext.field.Text', {
+        store = Ext.getStore(this.store);
+    store.add({title:'',timestamp:new Date().getTime()+10000});
+    me.token = 0;
+    var textfield = Ext.create('Ext.field.Text', {
           listeners:{
             blur: function(){
               me.createTask();
+              if(me.token == 1)
+                store.sync();
+            },
+            keyup: function(event, target, options) {
+              if(target.event.keyIdentifier == 'Enter'){
+                me.addTask();
+              }
             }
           }
         }),
@@ -70,14 +84,21 @@ Ext.define('Ext.ux.Reminder', {
         
     query[query.length-1].innerHTML = '<div class="reminder-textfield" id="new-task">'+input+'</div>';
     selector += ' input';
-    Ext.DomQuery.select(selector)[0].focus();   
+    query = Ext.DomQuery.select(selector);
+    query[query.length-1].focus();  
+    me.token = 1; 
   },
   
   createTask: function(){
+    var value = Ext.DomQuery.select('div[id=new-task] input')[0].value;
     var store = Ext.getStore(this.store);
-    store.add({title:Ext.DomQuery.select('div[id=new-task] input')[0].value});
-    store.removeAt(store.getCount()-2);
-    store.sync();
+    if(value != ''){
+      store.add({title:value,timestamp:new Date().getTime()});
+      store.removeAt(store.getCount()-2);
+    }
+    else{
+      store.removeAt(store.getCount()-1);
+    }
   }
   
 });

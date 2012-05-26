@@ -7,7 +7,11 @@ Ext.define('Reminder.store.Tasks', {
       id: 'reminder-tasks'
     },
     autoLoad: true,
-    model: 'Reminder.model.Task',    
+    model: 'Reminder.model.Task', 
+    sorters: [{
+      property : 'timestamp',
+      direction: 'ASC'
+    }]   
   }
 });
 
