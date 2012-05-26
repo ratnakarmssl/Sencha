@@ -63,12 +63,21 @@ Ext.define('Ext.ux.Reminder', {
   
   addTask: function(){
     Ext.getStore(this.store).add({title:'',timestamp:new Date().getTime()+10000});
-    
     var me = this,
-        textfield = Ext.create('Ext.field.Text', {
+        store = Ext.getStore(this.store);
+    store.add({title:'',timestamp:new Date().getTime()+10000});
+    me.token = 0;
+    var textfield = Ext.create('Ext.field.Text', {
           listeners:{
             blur: function(){
               me.createTask();
+              if(me.token == 1)
+                store.sync();
+            },
+            keyup: function(event, target, options) {
+              if(target.event.keyIdentifier == 'Enter'){
+                me.addTask();
+              }
             }
           }
         }),
@@ -84,6 +93,7 @@ Ext.define('Ext.ux.Reminder', {
   },
   
   createTask: function(){
+    var value = Ext.DomQuery.select('div[id=new-task] input')[0].value;
     var store = Ext.getStore(this.store);
     store.add({title:Ext.DomQuery.select('div[id=new-task] input')[0].value,timestamp:new Date().getTime()});
     store.removeAt(store.getCount()-1);
