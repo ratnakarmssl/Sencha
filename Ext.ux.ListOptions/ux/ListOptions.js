@@ -19,6 +19,7 @@ Ext.define('Ext.ux.ListOptions', {
     me.callParent(arguments);
     me.store = me.config.store;
     me.direction = me.config.direction;
+    me.allowMultiple = me.config.allowMultiple;
     me.htmlArray = [];
     me.targets = [];
     delete me.config;
@@ -53,16 +54,7 @@ Ext.define('Ext.ux.ListOptions', {
   },
   onScroll:function(scroller){
     var me = this;
-    var nb = me.targets.length;
-    if(nb > 0){
-      var i;
-      for(var i=0;i<nb;i++){
-        var offset = me.targets[0][0];
-        var target = me.targets[0][1];
-        me.hideOptions(offset, target);
-        me.targets.shift();
-      }
-    }
+    me.hideOptions();
   },
   onItemSwipe: function(list,target,index,e){
     var me = this;
@@ -71,35 +63,49 @@ Ext.define('Ext.ux.ListOptions', {
       
       var offsetX = (direction == 'right') ? parseInt(screen.width) : -parseInt(screen.width) ;
       
-      me.targets.push([offsetX,target]);
       me.showOptions(offsetX, target);
     }
   },
-  hideOptions: function(offset, target){
-    var anim = Ext.create('Ext.Anim',{
-      autoClear: false,
-      from:{
-        '-moz-transform':'translate('+offset+'px,0px)',
-        '-webkit-transform':'translate('+offset+'px,0px)',
-        '-o-transform':'translate('+offset+'px,0px)',
-        '-ms-transform':'translate('+offset+'px,0px)',
-        'transform':'translate('+offset+'px,0px)'
-      },
-      to: {
-        '-moz-transform':'translate(0px,0px)',
-        '-webkit-transform':'translate(0px,0px)',
-        '-o-transform':'translate(0px,0px)',
-        '-ms-transform':'translate(0px,0px)',
-        'transform':'translate(0px,0px)'
-      },
-      easing:'ease-out',
-      delay: 10,
-      duration: 250
-    });
+  hideOptions: function(){
+    var me = this;
+    var nb = me.targets.length;
+    if(nb > 0){
+      var i;
+      for(var i=0;i<nb;i++){
+        var offset = me.targets[0][0];
+        var target = me.targets[0][1];
+        var anim = Ext.create('Ext.Anim',{
+          autoClear: false,
+          from:{
+            '-moz-transform':'translate('+offset+'px,0px)',
+            '-webkit-transform':'translate('+offset+'px,0px)',
+            '-o-transform':'translate('+offset+'px,0px)',
+            '-ms-transform':'translate('+offset+'px,0px)',
+            'transform':'translate('+offset+'px,0px)'
+          },
+          to: {
+            '-moz-transform':'translate(0px,0px)',
+            '-webkit-transform':'translate(0px,0px)',
+            '-o-transform':'translate(0px,0px)',
+            '-ms-transform':'translate(0px,0px)',
+            'transform':'translate(0px,0px)'
+          },
+          easing:'ease-out',
+          delay: 10,
+          duration: 250
+        });
+
+        anim.run(target);
+        me.targets.shift();
+      }
+    }
     
-    anim.run(target);
   },
   showOptions: function(offset, target){
+    var me = this;
+    if(!me.allowMultiple)
+      me.hideOptions();
+    
     var anim = Ext.create('Ext.Anim',{
       autoClear: false,
       from:{
@@ -121,5 +127,6 @@ Ext.define('Ext.ux.ListOptions', {
       duration: 250
     });
     anim.run(target);
+    me.targets.push([offset,target]);
   }
 });
