@@ -16,13 +16,22 @@ Just add the './ux' folder within your app directory and add this at the top of 
     
 Replace 'PATH_TO_UX_FOLDER' with the appropriate value (probably './ux' or './app/ux')
 
-Then, you just need to add in the component where you wish to use the view::
+Then, you just need to add this in the component where you wish to use the view::
 
     requires: [
       'Ext.ux.Reminder'
     ],
 
-That's all
+And, then you can use the component like this for instance::
+
+    config: {
+      fullscreen: true,
+      layout:'fit',
+      items: [{
+        xtype:'reminder',
+        store:'Tasks'
+      }]
+    }
 
 You can see an example in 'app/view/Main.js'
 
