@@ -22,6 +22,7 @@ Ext.define('Ext.ux.ListOptions', {
     me.options = me.config.options;
     me.direction = me.config.direction || 'right';
     me.allowMultiple = me.config.allowMultiple || false;
+    me.hideAfterUse = me.config.hideAfterUse || true;
     me.htmlArray = [];
     me.targets = [];
     delete me.config;
@@ -85,6 +86,8 @@ Ext.define('Ext.ux.ListOptions', {
     for(o in me.options){
       if(me.options[o].cls == node.className){
         me.options[o].handler(me.currentRecord);
+        if(me.hideAfterUse)
+          me.hideOptions();
       }
     }
   },

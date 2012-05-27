@@ -19,6 +19,7 @@ Ext.define("ListOptions.view.Main", {
       store:'Tasks',
       direction: 'right', // 'left', 'right', 'both'
       allowMultiple: false, // true or false
+      hideAfterUse: true,// true of false
       options: [{
         cls: 'bookmark',
         handler:function(record){
