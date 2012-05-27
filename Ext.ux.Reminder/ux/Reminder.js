@@ -81,7 +81,9 @@ Ext.define('Ext.ux.Reminder', {
   createTask: function(){
     var value = Ext.DomQuery.select('div[id=new-task] input')[0].value;
     var store = Ext.getStore(this.store);
-    store.add({title:value,timestamp:new Date().getTime()});
+    if(value != ''){
+      store.add({title:value,timestamp:new Date().getTime()});
+    }
     store.removeAt(store.getCount()-1);
     store.sync();
   }
