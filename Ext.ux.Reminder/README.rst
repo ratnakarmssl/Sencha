@@ -8,7 +8,7 @@ I started this project to answer this `StackOverflow post`_. Basically, the OP w
 Getting started
 -----------------
 
-Just add the './ux' folder within your app directory and add this at the top of your 'app.js'
+Just add the './ux' folder within your app directory and add this at the top of your 'app.js'::
 
     Ext.Loader.setPath({
         'Ext.ux':   'PATH_TO_UX_FOLDER'
@@ -16,7 +16,7 @@ Just add the './ux' folder within your app directory and add this at the top of 
     
 Replace 'PATH_TO_UX_FOLDER' with the appropriate value (probably './ux' or './app/ux')
 
-Then, you just need to add in the component where you wish to use the view :
+Then, you just need to add in the component where you wish to use the view::
 
     requires: [
       'Ext.ux.Reminder'
