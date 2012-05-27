@@ -29,3 +29,6 @@ You can see an example in 'app/view/Main.js'
 Demo
 -----------------
 
+You can check out `this demo`_
+
+.. _`this demo`: http://titouanvanbelle.fr/GitHub/Sencha/Ext.ux.Reminder/
