@@ -1,0 +1,5 @@
+Infinite Carousel
+===============
+
+Getting started
+-----------------
