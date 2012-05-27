@@ -55,8 +55,9 @@ You can see an example in 'app/view/Main.js'
 Documentation
 -----------------
 
-- **direction** : The direction you want the user to swipe the list item. Possitable value are ``right``, ``left`` and ``both``. Default value is ``right``
-- **allowMultiple** : ``true`` if you want the user to be able to swipe multiple items. Default value is ``false``
+- **direction** : The direction you want the user to swipe the list item. Possitable value are ``right``, ``left`` and ``both``. Default value is ``right``.
+- **allowMultiple** : ``true`` if you want the user to be able to swipe multiple items. Default value is ``false``.
+- **hideAfterUse** : ``true`` if you want the to hide the option menu when the user clicks on an option. Default value is ``true``.
 
 Demo
 -----------------
