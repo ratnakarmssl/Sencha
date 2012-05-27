@@ -20,8 +20,8 @@ Ext.define('Ext.ux.ListOptions', {
     me.callParent(arguments);
     me.store = me.config.store;
     me.options = me.config.options;
-    me.direction = me.config.direction;
-    me.allowMultiple = me.config.allowMultiple;
+    me.direction = me.config.direction || 'right';
+    me.allowMultiple = me.config.allowMultiple || false;
     me.htmlArray = [];
     me.targets = [];
     delete me.config;
