@@ -7,9 +7,7 @@ Ext.define('Ext.ux.InfiniteCarousel', {
   initConfig: function(){
     var me = this;
     me.callParent(arguments);
-
-    me.delay = me.config.delay || 4000;
-  
+    me.delay = me.config.delay;
     delete me.config;
   },
   initialize: function(){
@@ -25,15 +23,16 @@ Ext.define('Ext.ux.InfiniteCarousel', {
     me.setActiveItem(me.interval);
     
     me.on('activeitemchange', me.onActiveItemChange, me);
-    
-    me.timeout = Ext.defer(me.rotate, me.delay, me);
+    if(me.delay > 0)
+      me.timeout = Ext.defer(me.rotate, me.delay, me);
   },
   onActiveItemChange: function(c,v,ov){
     var me = this;
-    if (me.timeout)
-      clearTimeout(me.timeout);
     
-    me.timeout = Ext.defer(me.rotate, me.delay, me);
+    if (me.timeout){
+      clearTimeout(me.timeout);
+      me.timeout = Ext.defer(me.rotate, me.delay, me);
+    }
     
     var active = c.getActiveIndex(),
         direction = (c.getItems().indexOf(v) > c.getItems().indexOf(ov)) ? 'forward' : 'backward',
