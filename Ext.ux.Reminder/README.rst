@@ -11,7 +11,7 @@ Getting started
 Just add the './ux' folder within your app directory and add this at the top of your 'app.js'::
 
     Ext.Loader.setPath({
-        'Ext.ux':   'PATH_TO_UX_FOLDER'
+      'Ext.ux':   'PATH_TO_UX_FOLDER'
     });
     
 Replace 'PATH_TO_UX_FOLDER' with the appropriate value (probably './ux' or './app/ux')
