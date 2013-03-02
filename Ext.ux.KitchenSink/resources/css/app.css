@@ -1,0 +1,300 @@
+/* GENERAL */
+
+html, body {
+    font: 15px 'HelveticaNeue-Light', sans-serif;
+}
+
+.x-dragging {
+    opacity: 1;
+}
+
+/* CUSTOM */
+
+.x-toolbar.x-navigation-bar {
+    background-image: none;
+    background-color: #44474D;
+    border-bottom: 1px solid #3F4248;
+
+    -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+
+    z-index: 1;
+}
+
+.x-toolbar.x-navigation-bar .x-title {
+    font: 24px 'Dancing Script', cursive;
+}
+
+.x-toolbar .x-button,
+.x-button.x-button-back::after,
+.x-button.x-button-back::before {
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 0px !important;
+}
+
+.x-toolbar .x-button .x-button-label {
+    font-weight: normal;
+}
+
+.x-list {
+    background-color: #FFF;
+}
+
+.x-list-normal .x-list-header {
+    background-color: #EEE;
+    background-image: none;
+    border: 1px solid #CCC;
+    color: #44474E;
+    font-family: 'Helvetica Neue', sans-serif;
+    text-shadow: none;
+}
+
+.checkbox {
+    width: 19px;
+    height: 25px;
+    padding: 0px; /* Removed padding to eliminate color bleeding around image
+       you could make the image wider on the right to get the padding back */
+    background: url(../images/checkboxes.png) no-repeat;
+    display: block;
+    clear: left;
+    float: left;
+}
+
+.checkbox.checked {
+     background-position: 0px -50px;
+}
+
+.checkbox.clicked {
+     background-position: 0px -25px;
+}
+
+.checkbox.clicked.checked {
+     background-position: 0px -75px;
+}
+
+.checkbox input {
+    display: none;
+}
+
+.x-layout-card-item {
+    background: #FFF;
+}
+
+/* LIST OPTIONS */
+
+.list-options {
+    background-color:#FFF;
+}
+
+.list-options-item {
+    z-index:1;
+    background-color:#FFF;
+}
+
+.list-options-item .x-list-item-label {
+    background-color: white;
+}
+
+.list-options-pressed {
+    z-index:1;
+    background-color:#FFF;
+}
+
+.list-options-selected {
+    z-index:1;
+    background-color:#FFF;
+}
+
+.list-options-menu {
+    background-color: #EEE;
+    -webkit-box-shadow: inset 0 3px 1px -2px rgba(0, 0, 0, 0.3), inset 0 -3px 1px -2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: inset 0 3px 1px -2px rgba(0, 0, 0, 0.3), inset 0 -3px 1px -2px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 3px 1px -2px rgba(0, 0, 0, 0.3), inset 0 -3px 1px -2px rgba(0, 0, 0, 0.3);
+}
+
+.list-options-menu li {
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size: 24px;
+}
+
+.list-options-menu li[class*='bookmark']{ background-image:url('../icons/bookmark.png'); }
+.list-options-menu li[class*='action']{ background-image:url('../icons/action.png'); }
+.list-options-menu li[class*='delete']{ background-image:url('../icons/delete.png'); }
+
+/* NOTIFICATION CENTER */
+
+.notification-list{
+    background-color:transparent;
+}
+
+.notification-list .x-list-header{
+    color:#FFF;
+    padding:0;
+    font-size:17px;
+    padding-left:5px;
+    padding-top:4px;
+    text-shadow: 0px -2px 1px #000000;
+    filter: dropshadow(color=#000000, offx=0, offy=1);
+    background-color:transparent, transparent;
+    background-image: url('../images/header-bg.png'),url('../images/cross2.png');
+    border:0px;
+    -webkit-box-shadow:  0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    box-shadow:  0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    width:100%;
+    height:30px;
+    background-repeat:repeat,no-repeat;
+    background-position:left left, 99% center;
+}
+
+.notification-list .x-list-header .cross{
+    position: absolute;
+    top:4px;
+    right:3px;
+    height:24px;
+    width:24px;
+    background-image: url('../images/cross2.png');
+    background-repeat:no-repeat;
+    background-position:center center;
+}
+
+.notification-list .x-list-header div.icon{
+    float:left;
+    width:24px;
+    height:24px;
+    margin-right:5px;
+}
+
+.notification-list div.x-list-header div[class*='Facebook'] div.icon{
+    background-image:url('../images/icons/facebook.png');
+    background-repeat:no-repeat;
+    background-position:center center;
+}
+
+.notification-list div.x-list-header div[class*='Message'] div.icon{
+    background-image:url('../images/icons/sms.png');
+    background-repeat:no-repeat;
+    background-position:center center;
+}
+
+.notification-list div.x-list-header div[class*='Phone'] div.icon{
+    background-image:url('../images/icons/phone.png');
+    background-repeat:no-repeat;
+    background-position:center center;
+}
+
+.notification-list div.x-list-item-label{
+    border-top: none !important;
+    border-bottom: none !important;
+    padding:0 !important;
+}
+
+.notification-item{
+    margin:0;
+    padding:0;
+    min-height: 50px;
+    background-color:transparent;
+}
+
+.notification-item-pressed{
+    min-height: 50px;
+    background-color:transparent;
+}
+
+.notification-item-selected{
+    min-height: 50px;
+    background-color:transparent;
+}
+
+.notification-item-title{
+    padding-left:34px;
+    padding-top:6px;
+    color:#FFF;
+    font-weight:bold;
+    text-shadow: 0px 1px 2px #000000;
+    filter: dropshadow(color=#000000, offx=0, offy=2);
+}
+
+.notification-item-description{
+    padding-left:34px;
+    padding-top:4px;
+    padding-bottom:4px;
+    color:#FFF;
+    font-size:14px;
+    text-shadow: 0px 1px 2px #000000;
+    filter: dropshadow(color=#000000, offx=0, offy=2);
+}
+
+.notification-item-title .icon{
+    float:left;
+    width:24px;
+    height:24px;
+    margin-right:5px;
+}
+
+/* REMINDER */
+
+.reminder-list{
+    background-color:#FFF;
+}
+
+.reminder-item{
+    color:#222 !important;
+    margin:0;
+    padding:0;
+    background-color:transparent;
+}
+
+.reminder-item-pressed{
+    background-color:transparent;
+}
+
+.reminder-item-selected{
+    background-color:transparent;
+}
+
+.reminder-item .x-list-item-label {
+    padding: 0 !important;
+}
+
+.reminder-item-ticker{
+    float:left;
+    padding-top:10px;
+    padding-left:8px;
+    width:24px;
+    height:26px;
+}
+
+.reminder-item-title{
+    float:left;
+}
+
+.reminder-item-title .label{
+    position: relative;
+    top:11px;
+    margin-left:8px;
+    color:#222;
+}
+
+.reminder-textfield input{
+    border-style: none;
+    background-color: transparent;
+}
+
+/* INFINITE CAROUSEL */
+
+.infinite-carousel .carousel-item.picture {
+    border: 4px solid white;
+    margin: 20px;
+    width: auto;
+    height: 280px;
+    max-height: 280px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
