@@ -1,18 +1,7 @@
-.collection {
-
-  text-align: center;
-  display:-moz-box; /* Firefox */
-  display:-webkit-box; /* Safari and Chrome */
-  display:box;
-
-}
-
 .collection-item {
 
-  display: inline-block;
-  -moz-box-flex:2.0; /* Firefox */
-  -webkit-box-flex:2.0; /* Safari and Chrome */
-  box-flex:2.0;
+  float: left;
+  margin: 4px;
 
   .picture {
 
