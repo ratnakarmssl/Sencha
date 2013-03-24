@@ -9,25 +9,22 @@ Ext.define('Ext.ux.InfiniteCarousel', {
     automatic: false,
     indicator: false,
     start: true
-    // draggable: {
-    //   direction: 'horizontal',
-    //   constraint: { min: { x: 0, y: 0 }, max: { x: 0, y: 0 } },
-    //   listeners: {
-    //     dragstart: {
-    //       fn: this.dragstart,
-    //       order: 'before',
-    //       scope: this
-    //     },
-    //     dragend: {
-    //       fn: this.dragend,
-    //       scope: this
-    //     }
-    //   }
-    // }
   },
 
   initialize: function () {
     this.callParent(arguments);
+
+    this.element.on({
+      dragstart: {
+        fn: this.dragstart,
+        order: 'before',
+        scope: this
+      },
+      dragend: {
+        fn: this.dragend,
+        scope: this
+      }
+    });
 
     function isEven(nb) {
       return (nb%2 === 0) ? true : false;
