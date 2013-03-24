@@ -1,0 +1,45 @@
+.list-options {
+
+  background-color:#FFF;
+
+}
+
+.list-options-item {
+
+  z-index:1;
+  background-color:#FFF;
+
+  .x-list-item-label {
+
+    background-color: white;
+
+  }
+
+}
+
+.list-options-pressed,
+.list-options-selected {
+
+  z-index: 1;
+  background-color: #FFF;
+
+}
+
+.list-options-menu {
+
+  background-color: #EEE;
+  @include box-shadow(inset 0 3px 1px -2px rgba(0, 0, 0, 0.3), inset 0 -3px 1px -2px rgba(0, 0, 0, 0.3));
+
+  li {
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+
+  }
+
+}
+
+.list-options-menu li[class*='bookmark']{ background-image:url('../icons/bookmark.png'); }
+.list-options-menu li[class*='action']{ background-image:url('../icons/action.png'); }
+.list-options-menu li[class*='delete']{ background-image:url('../icons/delete.png'); }
