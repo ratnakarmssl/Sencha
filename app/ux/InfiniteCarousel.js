@@ -8,22 +8,22 @@ Ext.define('Ext.ux.InfiniteCarousel', {
     delay: 2000,
     automatic: false,
     indicator: false,
-    start: true,
-    draggable: {
-      direction: 'horizontal',
-      constraint: { min: { x: 0, y: 0 }, max: { x: 0, y: 0 } },
-      listeners: {
-        dragstart: {
-          fn: this.dragstart,
-          order: 'before',
-          scope: this
-        },
-        dragend: {
-          fn: this.dragend,
-          scope: this
-        }
-      }
-    }
+    start: true
+    // draggable: {
+    //   direction: 'horizontal',
+    //   constraint: { min: { x: 0, y: 0 }, max: { x: 0, y: 0 } },
+    //   listeners: {
+    //     dragstart: {
+    //       fn: this.dragstart,
+    //       order: 'before',
+    //       scope: this
+    //     },
+    //     dragend: {
+    //       fn: this.dragend,
+    //       scope: this
+    //     }
+    //   }
+    // }
   },
 
   initialize: function () {
