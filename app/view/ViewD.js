@@ -13,7 +13,7 @@ Ext.define("KitchenSink.view.ViewD", {
     items: [{
       xtype: 'collectionview',
       store: 'Pictures',
-      cls: 'collection-view',
+      itemTpl: '<div class="picture" style="background-image:url({src})"></div>',
     }]
   }
 });

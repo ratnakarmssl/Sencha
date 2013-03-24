@@ -20,8 +20,6 @@ Ext.define('KitchenSink.store.Pictures', {
     }, {
       src: 'resources/images/collection/6.jpg'
     }, {
-      src: 'resources/images/collection/6.jpg'
-    }, {
       src: 'resources/images/collection/7.jpg'
     }, {
       src: 'resources/images/collection/8.jpg'
@@ -47,10 +45,6 @@ Ext.define('KitchenSink.store.Pictures', {
       src: 'resources/images/collection/18.jpg'
     }, {
       src: 'resources/images/collection/19.jpg'
-    }, {
-      src: 'resources/images/collection/20.jpg'
-    }, {
-      src: 'resources/images/collection/21.jpg'
     }]
   }
 });

@@ -1,16 +1,11 @@
 Ext.define('Ext.ux.CollectionView', {
-  extend: 'Ext.Container',
+  extend: 'Ext.DataView',
 
   xtype: 'collectionview',
 
   config: {
-    itemsPerLine: 3,
-    direction: 'veritcal'
-  },
-
-  initialize: function () {
-    this.callParent(arguments);
-
+    cls: 'collection',
+    itemCls: 'collection-item'
   }
 
 });
