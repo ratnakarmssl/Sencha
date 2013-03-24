@@ -1,12 +1,12 @@
 .infinite-carousel .carousel-item.picture {
 
-  border: 4px solid white;
-  margin: 20px;
-  width: auto;
-  height: 280px;
-  max-height: 280px;
+  margin: auto;
+  width: 320px;
+  height: 320px;
+  max-height: 320px;
   background-size: 100%;
   background-repeat: no-repeat;
+  background-position: center center;
 
   @include box-shadow(0 0 2px rgba(0, 0, 0, 0.5));
 
