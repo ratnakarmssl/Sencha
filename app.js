@@ -17,15 +17,18 @@ Ext.application({
     'Main',
     'ViewA',
     'ViewB',
-    'ViewC'
+    'ViewC',
+    'ViewD'
   ],
 
   stores: [
-    'Tasks'
+    'Tasks',
+    'Pictures'
   ],
 
   models: [
-    'Task'
+    'Task',
+    'Picture'
   ],
 
   icon: {
@@ -76,6 +79,9 @@ Ext.application({
       }, {
         title: 'Reminder',
         xtype: 'viewc'
+      }, {
+        title: 'Collection',
+        xtype: 'viewd'
       }]
     });
   },
