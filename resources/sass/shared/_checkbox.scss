@@ -1,0 +1,27 @@
+.checkbox {
+  width: 19px;
+  height: 25px;
+  padding: 0px; /* Removed padding to eliminate color bleeding around image
+  you could make the image wider on the right to get the padding back */
+  background: url(../images/checkboxes.png) no-repeat;
+  display: block;
+  clear: left;
+  float: left;
+
+  &.checked {
+    background-position: 0px -50px;
+  }
+
+  &.clicked {
+    background-position: 0px -25px;
+  }
+
+  &.clicked.checked {
+    background-position: 0px -75px;
+  }
+
+  input {
+    display: none;
+  }
+
+}

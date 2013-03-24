@@ -1,0 +1,48 @@
+.x-dragging {
+  opacity: 1;
+}
+
+.x-toolbar.x-navigation-bar {
+  background-image: none;
+  background-color: #44474D;
+  border-bottom: 1px solid #3F4248;
+
+  -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+
+  z-index: 1;
+}
+
+.x-toolbar.x-navigation-bar .x-title {
+  font: 24px 'Dancing Script', cursive;
+}
+
+.x-toolbar .x-button,
+.x-button.x-button-back::after,
+.x-button.x-button-back::before {
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0px !important;
+}
+
+.x-toolbar .x-button .x-button-label {
+  font-weight: normal;
+}
+
+.x-list {
+  background-color: #FFF;
+}
+
+.x-list-normal .x-list-header {
+  background-color: #EEE;
+  background-image: none;
+  border: 1px solid #CCC;
+  color: #44474E;
+  font-family: 'Helvetica Neue', sans-serif;
+  text-shadow: none;
+}
+
+.x-layout-card-item {
+  background: #FFF;
+}
