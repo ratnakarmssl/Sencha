@@ -17,15 +17,15 @@ Ext.define("KitchenSink.view.ViewA", {
       width: '100%',
       docked: 'top',
       items: [{
-        html: '<div class="carousel-item picture" style="background-image:url(resources/images/infinitecarousel/1.jpg)"></div>'
+        html: '<div class="carousel-item picture" style="background-image:url(resources/images/collection/1.jpg)"></div>'
       }, {
-        html: '<div class="carousel-item picture" style="background-image:url(resources/images/infinitecarousel/2.jpg)"></div>'
+        html: '<div class="carousel-item picture" style="background-image:url(resources/images/collection/2.jpg)"></div>'
       }, {
-        html: '<div class="carousel-item picture" style="background-image:url(resources/images/infinitecarousel/3.jpg)"></div>'
+        html: '<div class="carousel-item picture" style="background-image:url(resources/images/collection/3.jpg)"></div>'
       }, {
-        html: '<div class="carousel-item picture" style="background-image:url(resources/images/infinitecarousel/4.jpg)"></div>'
+        html: '<div class="carousel-item picture" style="background-image:url(resources/images/collection/4.jpg)"></div>'
       }, {
-        html: '<div class="carousel-item picture" style="background-image:url(resources/images/infinitecarousel/5.jpg)"></div>'
+        html: '<div class="carousel-item picture" style="background-image:url(resources/images/collection/5.jpg)"></div>'
       }]
     }]
   }
